@@ -272,6 +272,7 @@ setup(  name        = "daal4py",
                     'daal4py.sklearn.svm',
                     'daal4py.sklearn.utils',
                     'daal4py.sklearn.model_selection',
+                    'daal4py.sklearn.metrics'
         ],
         ext_modules = getpyexts(),
 )

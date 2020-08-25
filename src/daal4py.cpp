@@ -688,3 +688,14 @@ void c_generate_shuffled_indices(data_or_file & idx, data_or_file & random_state
 #else
 #endif
 }
+
+void c_minkowski_distance(data_or_file & X, data_or_file & Y, data_or_file & result, unsigned int p)
+{
+#if __INTEL_DAAL_MINOR__ == 0 && INTEL_DAAL_VERSION >= 20200002 || __INTEL_DAAL_MINOR__ == 1 && INTEL_DAAL_VERSION >= 20210106
+    auto XTable             = get_table(X);
+    auto YTable             = get_table(Y);
+    auto DistanceTable = get_table(result);
+    daal::algorithms::distances::minkowski<double>(XTable, YTable, DistanceTable, p);
+#else
+#endif
+}

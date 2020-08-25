@@ -222,6 +222,11 @@ cdef extern from "daal4py.h":
 def daal_train_test_split(orig, train, test, train_idx, test_idx):
     c_train_test_split(data_or_file(<PyObject*>orig), data_or_file(<PyObject*>train), data_or_file(<PyObject*>test), data_or_file(<PyObject*>train_idx), data_or_file(<PyObject*>test_idx))
 
+cdef extern from "daal4py.h":
+    cdef void c_minkowski_distance(data_or_file & X , data_or_file & Y, data_or_file & result, unsigned int p) except +
+
+def daal_minkowski_distance(X, Y, result, p):
+    c_minkowski_distance(data_or_file(<PyObject*>X), data_or_file(<PyObject*>Y), data_or_file(<PyObject*>result), p)
 
 cdef extern from "daal4py.h":
     cdef void c_generate_shuffled_indices(data_or_file & idx, data_or_file & random_state) except +

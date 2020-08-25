@@ -57,6 +57,10 @@ using daal::services::LibraryVersionInfo;
 #include "data_management/data/internal/train_test_split.h"
 #endif
 
+#if __INTEL_DAAL_MINOR__ == 0 && INTEL_DAAL_VERSION >= 20200002 || __INTEL_DAAL_MINOR__ == 1 && INTEL_DAAL_VERSION >= 20210106
+    #include "algorithms/distances.h"
+#endif
+
 extern "C" {
 void c_daalinit(int nthreads=-1);
 void c_daalfini();
@@ -330,4 +334,8 @@ extern "C" {
 void c_generate_shuffled_indices(data_or_file & idx, data_or_file & random_state);
 }
 
+extern "C"
+{
+    void c_minkowski_distance(data_or_file & X, data_or_file & Y, data_or_file & result, unsigned int p);
+}
 #endif // _HLAPI_H_INCLUDED_
